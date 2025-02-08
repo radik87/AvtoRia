@@ -18,16 +18,20 @@ const page = await browser.newPage();
 //login page
 await page.goto("https://auto.ria.com/uk/");
 
- await Sleep(3000);
+ await Sleep(5000);
 
  //dropdown
  const dropListCategory = await page.$('[name="category_id"]');
  await dropListCategory.select("6");
 
-//check box used as btn
+// check box used as btn
  //await BtnClick(chexBox);
 //  const checkBox = await page.$("input[type='checkbox']")
 //  n.click()
+const checkBox = await page.$("input[id='verifiedVIN']");
+ await checkBox.click();
+
+ await Sleep(15000);
 
  await BtnClick(btnXsearch);
 
