@@ -43,6 +43,29 @@ let value1 = await page.evaluate(el => el.textContent, element1)
 console.log("ebat1");
 console.log(value1);
 
+
+//==============================================================2
+await page.waitForSelector('xpath//html/body/div[9]/section/div[3]/div/div/section[2]/div[4]/div[2]/div[1]/div/a/span');
+let element2 = await page.$('xpath//html/body/div[9]/section/div[3]/div/div/section[2]/div[4]/div[2]/div[1]/div/a/span');
+let value2 = await page.evaluate(el => el.textContent, element2)
+console.log("ebat2");
+console.log(value2);
+
+//==============================================================3
+await page.waitForSelector('xpath//html/body/div[9]/section/div[3]/div/div/section[3]/div[4]/div[2]/div[1]/div/a/span');
+let element3 = await page.$('xpath//html/body/div[9]/section/div[3]/div/div/section[3]/div[4]/div[2]/div[1]/div/a/span');
+let value3 = await page.evaluate(el => el.textContent, element3)
+console.log("ebat3");
+console.log(value3);
+
+//==============================================================4
+await page.waitForSelector('xpath//html/body/div[9]/section/div[3]/div/div/section[4]/div[4]/div[2]/div[1]/div/a/span');
+let element4 = await page.$('xpath//html/body/div[9]/section/div[3]/div/div/section[4]/div[4]/div[2]/div[1]/div/a/span');
+let value4 = await page.evaluate(el => el.textContent, element4)
+console.log("ebat4");
+console.log(value4);
+
+
  await Sleep(15000);
 
 
