@@ -24,16 +24,28 @@ await page.goto("https://auto.ria.com/uk/");
  const dropListCategory = await page.$('[name="category_id"]');
  await dropListCategory.select("6");
 
-// check box used as btn
+// check box checked by atrribute id
  //await BtnClick(chexBox);
-//  const checkBox = await page.$("input[type='checkbox']")
-//  n.click()
 const checkBox = await page.$("input[id='verifiedVIN']");
  await checkBox.click();
 
+ await BtnClick(btnXsearch);
+
+ await page.waitForSelector('xpath//html/body/div[9]/section/div[3]/div/div/section[1]/div[4]/div[2]/div[1]/div/a/span');
+let element = await page.$('xpath//html/body/div[9]/section/div[3]/div/div/section[1]/div[4]/div[2]/div[1]/div/a/span');
+let value = await page.evaluate(el => el.textContent, element)
+console.log("ebat");
+console.log(value);
+
+await page.waitForSelector("span[class='blue bold']");
+let element1 = await page.$("span[class='blue bold']");
+let value1 = await page.evaluate(el => el.textContent, element1)
+console.log("ebat1");
+console.log(value1);
+
  await Sleep(15000);
 
- await BtnClick(btnXsearch);
+
 
  await Sleep(5000);
  
