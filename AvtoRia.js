@@ -48,22 +48,14 @@ console.log(value1);
 await page.waitForSelector('xpath//html/body/div[9]/section/div[3]/div/div/section[2]/div[4]/div[2]/div[1]/div/a/span');
 let element2 = await page.$('xpath//html/body/div[9]/section/div[3]/div/div/section[2]/div[4]/div[2]/div[1]/div/a/span');
 let value2 = await page.evaluate(el => el.textContent, element2)
-console.log("ebat2");
+console.log("value2");
 console.log(value2);
+console.log("ebat2");
 
-//==============================================================3
-await page.waitForSelector('xpath//html/body/div[9]/section/div[3]/div/div/section[3]/div[4]/div[2]/div[1]/div/a/span');
-let element3 = await page.$('xpath//html/body/div[9]/section/div[3]/div/div/section[3]/div[4]/div[2]/div[1]/div/a/span');
-let value3 = await page.evaluate(el => el.textContent, element3)
-console.log("ebat3");
-console.log(value3);
+const element22 = 'xpath//html/body/div[9]/section/div[3]/div/div/section[2]/div[4]/div[2]/div[1]/div/a/span';
+console.log("ebat22");
 
-//==============================================================4
-await page.waitForSelector('xpath//html/body/div[9]/section/div[3]/div/div/section[4]/div[4]/div[2]/div[1]/div/a/span');
-let element4 = await page.$('xpath//html/body/div[9]/section/div[3]/div/div/section[4]/div[4]/div[2]/div[1]/div/a/span');
-let value4 = await page.evaluate(el => el.textContent, element4)
-console.log("ebat4");
-console.log(value4);
+await GetInnerText(element22);
 
 
  await Sleep(15000);
@@ -100,11 +92,16 @@ console.log(value4);
    page.click(btn);
 }
 
-function SetTextBox(inputElement, inputValue)
+async function GetInnerText(inputElement)
 {
-  page.waitForSelector(inputElement);
-
-  page.$eval(inputElement, x => x.value = inputValue);
+  console.log('inputElement');
+  console.log(inputElement);
+  await page.waitForSelector(inputElement);
+  let element = await page.$(inputElement);
+  let value = await page.evaluate(e => e.textContent, element);
+  console.log("value form method");
+  console.log(value);
+  return value;
 }
 
 })();
