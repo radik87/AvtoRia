@@ -14,6 +14,13 @@ const page = await browser.newPage();
 
  let nextPage = 'xpath//html/body/div[8]/section/div[2]/div/div/div[34]/nav/span[10]/a';
 
+ const Car = {
+  name: '',
+  generation: '',
+  price: '',
+  created: ''
+ };
+
 //login page
 await page.goto("https://auto.ria.com/uk/");
 
@@ -31,26 +38,33 @@ const checkBox = await page.$("input[id='verifiedVIN']");
 
 //name
 let name = 'xpath//html/body/div[9]/section/div[3]/div/div/section[1]/div[4]/div[2]/div[1]/div/a/span';
-let nameResult = await GetInnerText(name);
-console.log("name:" + nameResult);
+let nameText = await GetInnerText(name);
+//console.log("name:" + nameText);
+Car.name = nameText;
 
 //generation
 let generation = 'xpath//html/body/div[9]/section/div[3]/div/div/section[1]/div[4]/div[2]/div[2]';
-let generationResult = await GetInnerText(generation);
-console.log("generation:" + generationResult);
+let generationText = await GetInnerText(generation);
+//console.log("generation:" + generationText);
+Car.generation = generationText;
 
 //price
 let price = 'xpath//html/body/div[9]/section/div[3]/div/div/section[1]/div[4]/div[2]/div[3]/span/span[1]';
-let priceResult = await GetInnerText(price);
-console.log("price:" + priceResult);
+let priceText = await GetInnerText(price);
+//console.log("price:" + priceText);
+Car.price = priceText;
 
 //created
 let created = 'xpath//html/body/div[9]/section/div[3]/div/div/section[1]/div[4]/div[2]/div[5]/span/span';
-let createdResult = await GetInnerText(created);
-console.log("created:" + createdResult);
+let createdText = await GetInnerText(created);
+//console.log("created:" + createdText);
+Car.created = createdText;
 
-
-
+console.log("CAR OBJ");
+console.log(Car.name);
+console.log(Car.generation);
+console.log(Car.price);
+console.log(Car.created);
 await Sleep(8000);
  
 //await BtnClick(nextPage);
