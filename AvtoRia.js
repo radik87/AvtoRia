@@ -71,9 +71,10 @@ await Sleep(10000);
     })
     
   }
-  console.log("result");
- console.log(JSON.stringify(result));
+  let jsonResult = JSON.stringify(result);
 
+  const fs = require('fs')
+  fs.writeFileSync('file.json', jsonResult);
 
 await Sleep(8000);
  
