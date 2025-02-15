@@ -1,4 +1,5 @@
 const pupe = require('puppeteer');
+const fs = require('fs');
 
 (async () => {
 const browser = await pupe.launch({
@@ -42,23 +43,25 @@ await page.goto("https://auto.ria.com/uk/");
 
  await BtnClick(btnXsearch);
 
+const photo2 = await page.$("source[type='image/webp']");
+console.log("photo2");
+console.log(photo2 ? true : false);
 
+const attr = await page.$$eval("source[type='image/webp']", el => el.map(x => x.getAttribute("srcset")));
+console.log("attr");
+console.log(attr);
+await Sleep(10000);
  for(let i = 1; i < 21; i++)
   {
     await Sleep(1000);
     Car.name = await GetInnerText(`xpath//html/body/div[9]/section/div[3]/div/div/section[${i}]/div[4]/div[2]/div[1]/div/a/span`);
-    console.log(Car.name);
 
     Car.generation = await GetInnerText(`xpath//html/body/div[9]/section/div[3]/div/div/section[${i}]/div[4]/div[2]/div[2]`);
-    console.log(Car.generation);
 
     Car.price = await GetInnerText(`xpath//html/body/div[9]/section/div[3]/div/div/section[${i}]/div[4]/div[2]/div[3]/span/span[1]`);
-    console.log(Car.price);
 
     Car.created = await GetInnerText(`xpath//html/body/div[9]/section/div[3]/div/div/section[${i}]/div[4]/div[2]/div[5]/span/span`);
-    console.log(Car.created);
-
-    console.log('=======================================================================================');
+   // console.log('=======================================================================================');
 
     result.push({
       name: Car.name,
@@ -69,7 +72,9 @@ await page.goto("https://auto.ria.com/uk/");
     
   }
   console.log("result");
- console.log(result);
+ console.log(JSON.stringify(result));
+
+
 await Sleep(8000);
  
 //await BtnClick(nextPage);
