@@ -17,7 +17,7 @@ const page = await browser.newPage();
 //  let price = 'xpath//html/body/div[9]/section/div[3]/div/div/section[1]/div[4]/div[2]/div[3]/span/span[1]';
 //  let created = 'xpath//html/body/div[9]/section/div[3]/div/div/section[1]/div[4]/div[2]/div[5]/span/span';
 
- let nextPage = 'xpath//html/body/div[8]/section/div[2]/div/div/div[34]/nav/span[10]/a';
+ let nextPage = 'a[class="page-link js-next"]';
 
  const Car = {
   name: '',
@@ -27,7 +27,7 @@ const page = await browser.newPage();
  };
 
  let result = [];
-
+ let pageNum = 6;
 //login page
 await page.goto("https://auto.ria.com/uk/");
 
@@ -43,14 +43,17 @@ await page.goto("https://auto.ria.com/uk/");
 
  await BtnClick(btnXsearch);
 
-const photo2 = await page.$("source[type='image/webp']");
-console.log("photo2");
-console.log(photo2 ? true : false);
 
-const attr = await page.$$eval("source[type='image/webp']", el => el.map(x => x.getAttribute("srcset")));
-console.log("attr");
-console.log(attr);
-await Sleep(10000);
+// const photo2 = await page.$("#searchResults > section:nth-child(11) > div.content-bar > div.ticket-photo.loaded > a");
+
+// console.log("photo2");
+// console.log(photo2 ? true : false);
+// console.log(photo2);
+
+//const attr = await page.$$eval("source[type='image/webp']", el => el.map(x => x.getAttribute("srcset")));
+// console.log("attr");
+// console.log(attr);
+ 
  for(let i = 1; i < 21; i++)
   {
     await Sleep(1000);
@@ -76,9 +79,9 @@ await Sleep(10000);
   const fs = require('fs')
   fs.writeFileSync('file.json', jsonResult);
 
-await Sleep(8000);
- 
-//await BtnClick(nextPage);
+await Sleep(3000);
+ console.log("nextpage");
+await BtnClick(nextPage);
 
 // await page.$eval(inputXLogin, x => x.value = 'iproua21@gmail.com');
 
