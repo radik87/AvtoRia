@@ -10,12 +10,7 @@ const browser = await pupe.launch({
 
 const page = await browser.newPage();
 
- let btnXsearch = 'xpath//html/body/div[1]/main/div[3]/div/form/div[3]/button';
-
-//  let name = 'xpath//html/body/div[9]/section/div[3]/div/div/section[1]/div[4]/div[2]/div[1]/div/a/span';
-//  let generation = 'xpath//html/body/div[9]/section/div[3]/div/div/section[1]/div[4]/div[2]/div[2]';
-//  let price = 'xpath//html/body/div[9]/section/div[3]/div/div/section[1]/div[4]/div[2]/div[3]/span/span[1]';
-//  let created = 'xpath//html/body/div[9]/section/div[3]/div/div/section[1]/div[4]/div[2]/div[5]/span/span';
+ let btnXsearch = 'button[type="submit"]';
 
  let nextPage = 'a[class="page-link js-next"]';
 
@@ -28,6 +23,7 @@ const page = await browser.newPage();
 
  let result = [];
  let pageNum = 6;
+
 //login page
 await page.goto("https://auto.ria.com/uk/");
 
@@ -43,16 +39,9 @@ await page.goto("https://auto.ria.com/uk/");
 
  await BtnClick(btnXsearch);
 
+ for(let p = 1; p < pageNum; p++)
+  {
 
-// const photo2 = await page.$("#searchResults > section:nth-child(11) > div.content-bar > div.ticket-photo.loaded > a");
-
-// console.log("photo2");
-// console.log(photo2 ? true : false);
-// console.log(photo2);
-
-//const attr = await page.$$eval("source[type='image/webp']", el => el.map(x => x.getAttribute("srcset")));
-// console.log("attr");
-// console.log(attr);
  
  for(let i = 1; i < 21; i++)
   {
@@ -72,16 +61,20 @@ await page.goto("https://auto.ria.com/uk/");
       price: Car.price,
       created: Car.created
     })
-    
   }
+  result.push({
+    pageNumber: p
+  })
+
+  await BtnClick(nextPage);
+}
+
   let jsonResult = JSON.stringify(result);
 
-  const fs = require('fs')
   fs.writeFileSync('file.json', jsonResult);
 
 await Sleep(3000);
- console.log("nextpage");
-await BtnClick(nextPage);
+
 
 // await page.$eval(inputXLogin, x => x.value = 'iproua21@gmail.com');
 
